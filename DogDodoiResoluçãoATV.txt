@@ -1,0 +1,292 @@
+CREATE TABLE tutor (
+  id_tutor int NOT NULL AUTO_INCREMENT,
+  nome varchar(100) DEFAULT NULL,
+  data_nascimento date DEFAULT NULL,
+  endereco varchar(255) DEFAULT NULL,
+  PRIMARY KEY (id_tutor)
+)
+
+INSERT INTO tutor VALUES 
+(1,'João Silva','1985-03-15','Rua A, nº 123'),
+(2,'Maria Santos','1978-09-22','Avenida B, nº 456'),
+(3,'Carlos Oliveira','1990-11-10','Rua C, nº 789'),
+(4,'Ana Pereira','1982-07-03','Travessa D, nº 10'),
+(5,'Pedro Fernandes','1975-05-28','Rua E, nº 567'),
+(6,'Sofia Costa','1988-02-19','Avenida F, nº 321'),
+(7,'Miguel Sousa','1983-04-12','Rua G, nº 234'),
+(8,'Catarina Almeida','1979-08-05','Avenida H, nº 876'),
+(9,'Rui Santos','1995-12-30','Rua I, nº 543'),
+(10,'Lúcia Oliveira','1987-06-17','Travessa J, nº 987'), 
+(11, 'Jeffersson Brugin', null, ''), 
+(12, 'Thiago Reis', null, '');
+
+select * from tutor
+
+
+
+CREATE TABLE paciente (
+  id_paciente int NOT NULL AUTO_INCREMENT,
+  id_tutor int DEFAULT NULL,
+  nome varchar(50) DEFAULT NULL,
+  raca varchar(30) DEFAULT NULL,
+  peso decimal(15,2) DEFAULT NULL,
+  cor varchar(30) DEFAULT NULL,
+  data_nascimento date DEFAULT NULL,
+  PRIMARY KEY (id_paciente),
+  KEY id_tutor (id_tutor),
+  CONSTRAINT paciente_ibfk_1 FOREIGN KEY (id_tutor) REFERENCES tutor (id_tutor) ON DELETE CASCADE ON UPDATE RESTRICT
+)
+
+INSERT INTO paciente VALUES 
+(1,1,'Toby','Golden Retriever',25.50,'Dourado','2019-04-10'),
+(2,1,'Luna','Border Collie',18.20,'Preto e Branco','2020-02-15'),
+(3,1,'Max','Labrador Retriever',30.80,'Preto','2018-09-20'),
+(4,2,'Bolinha','Poodle',7.30,'Branco','2017-11-05'),
+(5,2,'Mel','Shih Tzu',5.80,'Marrom e Branco','2019-06-12'),
+(6,2,'Thor','Bulldog Francês',12.60,'Tigrado','2020-03-25'),
+(7,3,'Rex','Pastor Alemão',32.00,'Preto e Castanho','2016-07-08'),
+(8,3,'Lucky','Vira-lata',20.50,'Branco e Caramelo','2019-10-30'),
+(9,3,'Nina','Dálmata',18.90,'Branco e Preto','2017-04-15'),
+(10,4,'Buddy','Labrador Retriever',29.40,'Caramelo','2018-01-20'),
+(11,4,'Princesa','Pug',6.10,'Bege','2020-05-03'),
+(12,4,'Rocky','Bulldog Inglês',24.70,'Tigrado','2019-09-08'),
+(13,5,'Spike','Rottweiler',38.20,'Preto e Marrom','2016-03-12'),
+(14,5,'Bella','Yorkshire Terrier',4.50,'Cinza e Castanho','2017-08-28'),
+(15,5,'Charlie','Schnauzer Miniatura',10.30,'Sal e Pimenta','2019-11-14'),
+(16,6,'Lola','Bulldog Francês',8.90,'Caramelo','2018-07-04'),
+(17,6,'Max','Beagle',12.00,'Tricolor','2017-01-30'),
+(18,6,'Luna','Poodle Toy',3.70,'Branco','2020-10-22'),
+(19,7,'Thor','Boxer',26.80,'Tigrado','2018-09-17'),
+(20,7,'Maya','Cocker Spaniel',15.50,'Preto','2019-12-05'),
+(21,7,'Bobby','Dachshund',9.20,'Marrom','2020-04-18'),
+(22,8,'Zeus','Doberman',34.60,'Preto e Castanho','2017-06-23'),
+(23,8,'Pipoca','Shih Tzu',6.80,'Branco','2019-03-11'),
+(24,8,'Fred','Spitz Alemão',11.10,'Laranja','2020-07-29'),
+(25,9,'Mel','Labrador Retriever',27.30,'Amarelo','2018-04-07'),
+(26,9,'Duke','Golden Retriever',31.70,'Dourado','2019-01-25'),
+(27,9,'Maggie','Dachshund',8.50,'Marrom','2020-08-14'),
+(28,10,'Tom','Maine Coon',6.70,'Tigrado','2019-05-20'),
+(29,10,'Simba','Persa',5.20,'Branco','2020-02-08'),
+(30,10,'Lucky','Siamês',4.80,'Cinza','2020-11-11'), 
+(31, null, 'Diuly', 'Cocker', 13.400, 'Preto', null), 
+(32, null, 'Gaia', 'SRD', 3.200, 'Cinza', null);
+
+select * from paciente
+
+
+
+CREATE TABLE medicamentos (
+  id_medicamento int NOT NULL AUTO_INCREMENT,
+  descricao varchar(100) DEFAULT NULL,
+  estoque int DEFAULT NULL,
+  unidade varchar(20) DEFAULT NULL,
+  valor_unitario decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (id_medicamento)
+)
+
+INSERT INTO medicamentos VALUES 
+(1,'Anti-inflamatório',50,'Comprimido',2.50),
+(2,'Antibiótico',30,'Comprimido',3.80),
+(3,'Vermífugo',40,'Comprimido',4.20),
+(4,'Antipulgas',60,'Pipeta',8.90),
+(5,'Vitaminas',45,'Gotas',6.75),
+(6,'Soro',20,'Frasco',12.30),
+(7,'Analgésico',35,'Comprimido',3.25),
+(8,'Colírio',25,'Frasco',5.60),
+(9,'Shampoo Antipulgas',55,'Frasco',7.90),
+(10,'Suplemento Alimentar',48,'Tablete',9.50),
+(11,'Antisséptico',42,'Frasco',4.80),
+(12,'Creme Cicatrizante',37,'Tubo',6.20),
+(13,'Pasta Dentária',29,'Tubo',7.30),
+(14,'Solução Oftálmica',23,'Frasco',8.40),
+(15,'Creme Hidratante',39,'Tubo',5.90),
+(16,'Anti-histamínico',34,'Comprimido',4.60),
+(17,'Pomada Cicatrizante',27,'Tubo',6.80),
+(18,'Creme Protetor Solar',21,'Tubo',9.10),
+(19,'Loção Capilar',31,'Frasco',7.50),
+(20,'Gel Anti-inflamatório',28,'Tubo',10.20);
+
+select * from medicamentos
+
+
+
+CREATE TABLE receita (
+  id_receita int NOT NULL AUTO_INCREMENT,
+  id_tutor int DEFAULT NULL,
+  id_paciente int DEFAULT NULL,
+  data_receita date DEFAULT NULL,
+  data_validade date DEFAULT NULL,
+  PRIMARY KEY (id_receita),
+  KEY id_tutor (id_tutor, id_paciente),
+  CONSTRAINT receita_ibfk_1 FOREIGN KEY (id_tutor, id_paciente) REFERENCES paciente (id_tutor, id_paciente)
+)
+
+INSERT INTO receita VALUES 
+(1,1,1,'2024-02-19','2024-03-19'),
+(2,1,2,'2024-02-20','2024-03-20'),
+(3,1,3,'2024-02-21','2024-03-21'),
+(4,2,4,'2024-02-22','2024-03-22'),
+(5,2,5,'2024-02-23','2024-03-23'),
+(6,2,6,'2024-02-24','2024-03-24'),
+(7,3,7,'2024-02-25','2024-03-25'),
+(8,3,8,'2024-02-26','2024-03-26'),
+(9,3,9,'2024-02-27','2024-03-27'),
+(10,4,10,'2024-02-28','2024-03-28'),
+(11,1,1,'2024-03-01','2024-03-29'),
+(12,1,2,'2024-03-02','2024-03-30'),
+(13,1,3,'2024-03-03','2024-03-31'),
+(14,2,4,'2024-03-04','2024-04-01'),
+(15,2,5,'2024-03-05','2024-04-02'),
+(16,2,6,'2024-03-06','2024-04-03'),
+(17,3,7,'2024-03-07','2024-04-04'),
+(18,3,8,'2024-03-08','2024-04-05'),
+(19,3,9,'2024-03-09','2024-04-06'),
+(20,4,10,'2024-03-10','2024-04-07');
+
+select * from receita
+
+
+
+CREATE TABLE item_receita (
+  id_item int NOT NULL AUTO_INCREMENT,
+  id_receita int NOT NULL,
+  id_medicamento int NOT NULL,
+  posologia varchar(100) DEFAULT NULL,
+  quantidade decimal(15,0) DEFAULT NULL,
+  valor_total decimal(15,0) DEFAULT NULL,
+  PRIMARY KEY (id_item, id_receita, id_medicamento)
+)
+
+INSERT INTO item_receita VALUES 
+(1,1,1,'Tomar 1 comprimido por dia',30,45),
+(1,2,3,'Tomar 1 comprimido a cada 12 horas',20,30),
+(2,1,2,'Aplicar 5 gotas no ouvido duas vezes ao dia',15,25),
+(2,2,4,'Aplicar 2 vezes ao dia no local afetado',10,40),
+(3,3,3,'Tomar 1 comprimido a cada 12 horas',1,20),
+(4,4,4,'Aplicar no local afetado conforme necessário',1,25),
+(5,5,5,'Tomar 1 comprimido a cada 8 horas',1,30),
+(6,6,6,'Aplicar na pele conforme indicado pelo veterinário',1,35),
+(7,7,7,'Tomar 1 comprimido antes das refeições',1,40),
+(8,8,8,'Aplicar no local afetado conforme necessário',1,45),
+(9,9,9,'Tomar 1 comprimido a cada 6 horas',1,50),
+(10,10,10,'Aplicar na região afetada duas vezes ao dia',1,55),
+(11,11,11,'Tomar 1 comprimido a cada 8 horas',1,60),
+(12,12,12,'Aplicar conforme orientação do veterinário',1,65),
+(13,13,13,'Tomar 1 comprimido por dia',1,70),
+(14,14,14,'Aplicar no local afetado conforme necessário',1,75),
+(15,15,15,'Tomar 1 comprimido a cada 12 horas',1,80),
+(16,16,16,'Aplicar conforme indicação do veterinário',1,85),
+(17,17,17,'Tomar 1 comprimido a cada 24 horas',1,90),
+(18,18,18,'Aplicar conforme necessário no local afetado',1,95),
+(19,19,19,'Tomar 1 comprimido por dia',1,100),
+(20,20,20,'Aplicar conforme orientação do veterinário',1,105);
+
+select * from item_receita
+
+
+
+CREATE TABLE consulta (
+  id_consulta int NOT NULL AUTO_INCREMENT,
+  id_tutor int DEFAULT NULL,
+  id_paciente int DEFAULT NULL,
+  data_consulta date DEFAULT NULL,
+  motivo varchar(255) DEFAULT NULL,
+  diagnostico varchar(255) DEFAULT NULL,
+  id_receita int DEFAULT NULL,
+  PRIMARY KEY (id_consulta),
+  KEY id_tutor (id_tutor, id_paciente),
+  KEY fk_consulta_receita (id_receita),
+  CONSTRAINT consulta_ibfk_1 FOREIGN KEY (id_tutor, id_paciente) REFERENCES paciente (id_tutor, id_paciente) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT fk_consulta_receita FOREIGN KEY (id_receita) REFERENCES receita (id_receita)
+)
+
+INSERT INTO consulta VALUES 
+(1,1,1,'2024-02-19','Dor abdominal','Gastrite',1),
+(2,1,2,'2024-02-18','Coceira intensa na pele','Dermatite alérgica',2),
+(3,1,3,'2024-02-17','Dificuldade para respirar','Pneumonia',3),
+(4,2,4,'2024-02-16','Vômitos frequentes','Gastrite',4),
+(5,2,5,'2024-02-15','Perda de apetite','Parasitose',5),
+(6,3,7,'2024-02-14','Coceira nas orelhas','Otodectose',6),
+(7,3,8,'2024-02-13','Dor ao urinar','Infecção urinária',7),
+(8,4,10,'2024-02-12','Letargia e febre','Infecção bacteriana',8),
+(9,5,14,'2024-02-11','Corrimento ocular','Conjuntivite',9),
+(10,6,16,'2024-02-10','Prurido na pele','Dermatite atópica',10);
+
+select * from consulta
+
+
+
+/*atividade1 - Selecione todos os pacientes cujo peso está entre 5 e 10 kg, ordenados por nome.*/
+select * from paciente
+where peso between 5 and 10
+order by nome;
+
+/*atividade2 - Selecione todos os medicamentos cuja descrição contém a palavra "anti", ordenados pelo valor unitário em ordem decrescente.*/
+select * from medicamentos
+where descricao like '%anti%'
+order by valor_unitario desc;
+
+/*atividade3 - Selecione todas as consultas realizadas no mês de janeiro de 2024.*/
+select * from consulta
+where data_consulta between '2024-01-01' and '2024-01-31';
+
+/*atividade4 - Selecione todos os pacientes que são da raça "Labrador" ou "Poodle", ordenados pelo peso em ordem crescente.*/
+select * from paciente
+where raca in ('Labrador Retriever', 'Poodle')
+order by peso asc;
+
+/*atividade5 - Selecione todas as consultas em que o motivo contenha a palavra "vacina" ou "imunização", e o diagnóstico seja "saudável", ordenados pela data da consulta em ordem decrescente.*/
+select * from consulta
+where (motivo like '%vacina%' or motivo like '%imunização%') and diagnostico = 'saudável'
+order by data_consulta desc;
+
+/*atividade6 - Selecione todas as receitas emitidas após 1º de março de 2024, para pacientes cujos tutores tenham o nome começando com a letra "A".*/
+select * from receita
+where data_receita > '2024-03-01' and id_tutor in (select id_tutor from tutor where nome like 'A%')
+order by data_receita;
+
+/*atividade7 - Selecione todos os medicamentos cujo estoque é menor ou igual a 30 unidades, ordenados pelo estoque em ordem decrescente.*/
+select * from medicamentos
+where estoque <= 30
+order by estoque desc;
+
+/*atividade8 - Selecione todas as receitas para pacientes com id entre 5 e 10, cujas datas de validade expiram em abril de 2024, ordenadas por data de receita em ordem crescente.*/
+select * from receita
+where id_paciente between 5 and 10 and data_validade <= '2024-04-01'
+order by data_receita asc;
+
+/*atividade9 - Selecione todas as consultas realizadas entre 1º de janeiro de 2024 e 31 de março de 2024 para os pacientes cuja raça começa com a letra "S", ordenadas pela data da consulta em ordem crescente.*/
+select * from consulta
+where data_consulta between '2024-01-01' and '2024-03-31'
+and id_paciente in (select id_paciente from paciente where raca like 'S%')
+order by data_consulta asc;
+
+/*atividade10 - Selecione todos os pacientes que pesam mais de 20 kg e cuja cor seja "preto" ou "branco", ordenados pelo peso em ordem decrescente.*/
+select * from paciente
+where peso > 20 and cor in ('preto', 'branco')
+order by peso desc;
+
+/*atividade11 - Selecione todas as consultas onde o motivo contenha a palavra "febre" e o diagnóstico seja diferente de "saudável".*/
+select * from consulta
+where motivo like '%febre%' and diagnostico <> 'saudável';
+
+/*atividade12 - Selecione todas as receitas emitidas em 2024 para pacientes que são da raça "Bulldog Francês" ou "Dachshund".*/
+select * from receita
+where data_receita between '2024-01-01' and '2024-12-31'
+and id_paciente in (select id_paciente from paciente where raca in ('Bulldog Francês', 'Dachshund'))
+
+/*atividade13 - Selecione todas as consultas onde o paciente é da raça "Labrador" e o diagnóstico é "obesidade".*/
+select * from consulta
+where id_paciente in (select id_paciente from paciente where raca like 'Labrador Retriever') and diagnostico = 'obesidade'
+
+/*atividade14 - Selecione todos os tutores cujo nome começa com a letra "M" .*/
+select * from tutor
+where nome like 'M%';
+
+/*atividade15 - Selecione todos os pacientes cuja data de nascimento é anterior a 2018-01-01 e que possuem menos de 5 kg.*/
+select * from paciente
+where data_nascimento < '2018-01-01' and peso < 5;
+
+/*atividade16 - Selecione todas as receitas cuja data de validade expira após 2024-06-30. */
+select * from receita
+where data_validade > '2024-06-30'
